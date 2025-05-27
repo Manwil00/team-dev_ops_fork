@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rss-feed
-  namespace: team-dev-ops
+  name: {{ .Values.server.rss_feed.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: rss-feed
+      app: {{ .Values.server.rss_feed.name }}
   template:
     metadata:
       labels:
-        app: rss-feed
+        app: {{ .Values.server.rss_feed.name }}
     spec:
       containers:
-      - name: rss-feed
-        image: "nginxdemos/hello" # <TODO: Placeholder image, replace with actual RSS feed API image>
-        ports:
-          - containerPort: 8081 # <TODO: Placeholder port, replace with actual port>
-            name: rss-feed-api
+        - name: {{ .Values.server.rss_feed.name }}
+          image: "{{ .Values.server.rss_feed.image }}"
+          imagePullPolicy: {{ .Values.server.rss_feed.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.server.rss_feed.port }}
+              name: {{ .Values.server.rss_feed.name }}-api

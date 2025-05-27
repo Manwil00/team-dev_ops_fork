@@ -2,11 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: report-generator-service
-  namespace: team-dev-ops
+  name: {{ .Values.server.report_generator.name }}-service
 spec:
   selector:
-    app: report-generator
+    app: {{ .Values.server.report_generator.name }}
   ports:
-  - port: 8082 # TODO Placeholder port, replace with actual port
-    targetPort: reportgen-api
+    - port: {{ .Values.server.report_generator.port }}
+      targetPort: {{ .Values.server.report_generator.name }}-api

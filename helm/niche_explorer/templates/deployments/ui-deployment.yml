@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ui
-  namespace: team-dev-ops
+  name: {{ .Values.client.ui.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: ui
+      app: {{ .Values.client.ui.name }}
   template:
     metadata:
       labels:
-        app: ui
+        app: {{ .Values.client.ui.name }}
     spec:
       containers:
-      - name: ui
-        image: "nginxdemos/hello" # <TODO: Placeholder image, replace with actual RSS feed API image>
-        ports:
-          - containerPort: 8080 # <TODO: Placeholder port, replace with actual port>
-            name: ui
+        - name: {{ .Values.client.ui.name }}
+          image: "{{ .Values.client.ui.image }}"
+          imagePullPolicy: {{ .Values.client.ui.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.client.ui.port }}
+              name: {{ .Values.client.ui.name }}

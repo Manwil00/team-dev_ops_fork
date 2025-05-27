@@ -2,11 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rss-feed-service
-  namespace: team-dev-ops
+  name: {{ .Values.server.rss_feed.name }}-service
 spec:
   selector:
-    app: source-detector
+    app: {{ .Values.server.rss_feed.name }}
   ports:
-  - port: 8081 # TODO Placeholder port, replace with actual port
-    targetPort: rss-feed-api
+    - port: {{ .Values.server.rss_feed.port }}
+      targetPort: {{ .Values.server.rss_feed.name }}-api

@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: embeddeploy
-  namespace: team-dev-ops
+  name: {{ .Values.server.embeddeploy.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: embeddeploy
+      app: {{ .Values.server.embeddeploy.name }}
   template:
     metadata:
       labels:
-        app: embeddeploy
+        app: {{ .Values.server.embeddeploy.name }}
     spec:
       containers:
-      - name: embeddeploy
-        image: "nginxdemos/hello" # <TODO: Placeholder image, replace with actual RSS feed API image>
-        ports:
-          - containerPort: 8083 # <TODO: Placeholder port, replace with actual port>
-            name: embeddeploy-api
+        - name: {{ .Values.server.embeddeploy.name }}
+          image: "{{ .Values.server.embeddeploy.image }}"
+          imagePullPolicy: {{ .Values.server.embeddeploy.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.server.embeddeploy.port }}
+              name: {{ .Values.server.embeddeploy.name }}-api
