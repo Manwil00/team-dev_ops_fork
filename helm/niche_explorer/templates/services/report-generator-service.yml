@@ -1,0 +1,12 @@
+# Template taken from: https://github.com/Mtze/kubernetes-templates/
+apiVersion: v1
+kind: Service
+metadata:
+  name: report-generator-service
+  namespace: team-dev-ops
+spec:
+  selector:
+    app: report-generator
+  ports:
+  - port: 8082 # TODO Placeholder port, replace with actual port
+    targetPort: reportgen-api

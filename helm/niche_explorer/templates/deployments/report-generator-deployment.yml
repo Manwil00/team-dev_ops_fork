@@ -1,0 +1,22 @@
+# Template taken from: https://github.com/Mtze/kubernetes-templates/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-generator
+  namespace: team-dev-ops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: report-generator
+  template:
+    metadata:
+      labels:
+        app: report-generator
+    spec:
+      containers:
+      - name: report-generator
+        image: "nginxdemos/hello" # <TODO: Placeholder image, replace with actual RSS feed API image>
+        ports:
+          - containerPort: 8082 # <TODO: Placeholder port, replace with actual port>
+            name: reportgen-api

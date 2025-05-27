@@ -1,0 +1,12 @@
+# Template taken from: https://github.com/Mtze/kubernetes-templates/
+apiVersion: v1
+kind: Service
+metadata:
+  name: rss-feed-service
+  namespace: team-dev-ops
+spec:
+  selector:
+    app: source-detector
+  ports:
+  - port: 8081 # TODO Placeholder port, replace with actual port
+    targetPort: rss-feed-api
