@@ -16,6 +16,12 @@ jobs:
         with:
           version: v3.9.0
 
+      - name: Set up Kubeconfig
+        uses: azure/k8s-set-context@v3
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
       - name: Deploy Helm Chart
         run: |
           helm upgrade --install niche-explorer helm/niche_explorer \
