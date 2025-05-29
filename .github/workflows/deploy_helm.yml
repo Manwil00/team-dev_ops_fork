@@ -1,0 +1,27 @@
+# .github/workflows/deploy_helm.yml -> from https://github.com/marketplace/actions/helm-deploy
+name: Deploy Helm Chart
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        release: 'niche-explorer'
+        namespace: 'team-dev-ops'
+        chart: 'helm/niche_explorer'
+        token: '${{ github.token }}'
+        value-files: >-
+        [
+          "helm/niche_explorer/values.yaml"
+        ]
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
