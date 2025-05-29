@@ -9,10 +9,11 @@ jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       
       - name: 'Deploy'
-        uses: 'deliverybot/helm@v4'
+        uses: 'deliverybot/helm@v1'
+          
         with:
           release: 'niche-explorer'
           namespace: 'team-dev-ops'
