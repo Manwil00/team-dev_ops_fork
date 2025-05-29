@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v1
       
       - name: 'Deploy'
-        uses: 'deliverybot/helm@v1'
+        uses: 'deliverybot/helm@v4'
         with:
           release: 'niche-explorer'
           namespace: 'team-dev-ops'
